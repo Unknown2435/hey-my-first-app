@@ -72,4 +72,61 @@ while True:
         sleep(500)
         display.scroll("Score:" + str(score))
         break
+        
+ Activity 4:
+ from microbit import *
+while True:
+    reading = accelerometer.get_x()
+    if reading > 20:
+        display.show("L")
+    elif reading < -20:
+        display.show("R")
+    else:
+        display.show(".")
+        
+Activity 5 (Compass):
+while True:
+    sleep(100)
+    needle = ((15-compass.heading())//30)%12
+    
+    display.show(Image.ALL_CLOCKS[needle])
+    
+Activity 6(Turning Knobs):
+from microbit import *
+j = 0
+while True:
+    reading = pin0.read_analog() /204
+    if reading> 4.0:
+        pos = 4
+    elif reading > 3.0:
+        pos = 3
+    elif reading > 2.0:
+        pos = 2
+    elif reading > 1.0:
+        pos = 1
+    else:
+        pos = 0
+        
+    column = ['0' for i in range (5)]
+    column[pos] = '9'
+    img = ((''.join(column)+':')*5)[0:-1]#
+    img = Image(img)
+    
+    display.show(img)
+    sleep(200)
+    
+Activity 6 (Light Bulb):
+from microbit import *
+frame = 0
+while True:
+    if frame % 2 == 0:
+        display.show(str(frame))
+        pin0.write_digital(0)
+    else:
+        pin0.write_digital(1)
+        display.clear()
+    frame+=1
+    sleep(2000)
+        
+
     
